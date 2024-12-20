@@ -8,11 +8,11 @@
 4. Install requirements 
 
 # Scripts
-##### Running grid search on the MLP hyper-parameters.
+#### Running grid search on the MLP hyper-parameters.
 Run the main script with the --grid-search argument  
 `python main.py --grid-search` 
 
-##### Train the MLP 
+#### Train the MLP 
 The default arguments to the main script will run 100 000 simulations of the random classifier, train the MLP with optimal hyper-parameters for 1000 epochs 50 times and save the results in the `results/` folder, for the 6-class classification scenario. It also assumes that the data can be found in the `data/` folder.  
 To run the training with a different number of classes, you can specify the `--num-classes` argument, e.g:  
 `python main.py --num-classes 2`   

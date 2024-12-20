@@ -13,30 +13,17 @@ from tqdm import trange
 import matplotlib.pyplot as plt
 
 parser = argparse.ArgumentParser()
-parser.add_argument("--grid-search", action="store_true")
-parser.add_argument("--datapath", type=str, default="./data")
-parser.add_argument("--num-repetitions", type=int, default=50)
-parser.add_argument("--num-epochs", type=int, default=1000)
-parser.add_argument("--num-simulations", type=int, default=100_000)
-parser.add_argument("--seed", type=int, default=62)
-parser.add_argument("--num-classes", type=int, default=6)
-parser.add_argument("--shap", action="store_true")
+parser.add_argument("--grid-search", action="store_true", help="Run grid search on the MLP hyper-parameters")
+parser.add_argument("--datapath", type=str, default="./data", help="Path to the data")
+parser.add_argument("--num-repetitions", type=int, default=50, help="Number of training repetitions")
+parser.add_argument("--num-epochs", type=int, default=1000, help="Number of epochs per repetition")
+parser.add_argument("--num-simulations", type=int, default=100_000, help="Number of simulations of the random classifier")
+parser.add_argument("--num-classes", type=int, default=6, help="Number of classes")
+parser.add_argument("--shap", action="store_true", help="Analyze feature importance")
 args = parser.parse_args()
 
 def load_optimized_model():
     return MLPClassifier(activation="tanh", alpha=0.0001, hidden_layer_sizes=(64,), solver="sgd", learning_rate_init=0.001, learning_rate="constant", max_iter=1000)
-    # if args.num_classes == 6:
-    #     return MLPClassifier(activation="tanh", alpha=0.0001, hidden_layer_sizes=(64,), solver="sgd", learning_rate_init=0.001, learning_rate="constant", max_iter=1000)
-    # elif args.num_classes == 5:
-    #     return MLPClassifier(activation="relu", alpha=0.0001, hidden_layer_sizes=(32, 32), solver="sgd", learning_rate_init=0.001, learning_rate="constant", max_iter=1000)
-    # elif args.num_classes == 4:
-    #     return MLPClassifier(activation="tanh", alpha=0.0001, hidden_layer_sizes=(32, 32), solver="adam", learning_rate_init=0.1, learning_rate="constant", max_iter=1000)
-    # elif args.num_classes == 3:
-    #     return MLPClassifier(activation="tanh", alpha=0.0001, hidden_layer_sizes=(32, 32), solver="adam", learning_rate_init=0.1, learning_rate="constant", max_iter=1000)
-    # elif args.num_classes == 2:
-    #     return MLPClassifier(activation="tanh", alpha=0.0001, hidden_layer_sizes=(32, 32), solver="adam", learning_rate_init=0.1, learning_rate="constant", max_iter=1000)
-    # else:
-    #     raise NotImplementedError(f"Number of classes {args.num_classes} not supported")
 
 def load_random_distribution(labels: np.ndarray, num_classes: int, num_simulations: int):
     if not os.path.exists(f"./results/random_accuracy_distribution_{num_classes}classes.npy"):

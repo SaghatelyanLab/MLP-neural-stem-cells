@@ -1,8 +1,9 @@
 # MLP-cell-stem-cell-pipeline
 
 ## Installation 
-
-*Clone the repository*
+1. Install [https://www.python.org/downloads/](Python)
+2. Clone the repository  
+   `git clone `
 
 *Create and configure python environment*
 

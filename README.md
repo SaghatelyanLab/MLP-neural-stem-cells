@@ -3,15 +3,21 @@
 ## Installation 
 1. Install [https://www.python.org/downloads/](Python)
 2. Clone the repository  
-   `git clone `
+   `git clone https://github.com/fredbeaupre/MLP-cell-stem-cell.git`
+3. Create virtual environment
+4. Install requirements 
 
-*Create and configure python environment*
+# Scripts
+##### Running grid search on the MLP hyper-parameters.
+Run the main script with the --grid-search argument  
+`python main.py --grid-search` 
 
-## Reproducing the results
+##### Train the MLP 
+The default arguments to the main script will run 100 000 simulations of the random classifier, train the MLP with optimal hyper-parameters for 1000 epochs 50 times and save the results in the `results/` folder, for the 6-class classification scenario. It also assumes that the data can be found in the `data/` folder.  
+To run the training with a different number of classes, you can specify the `--num-classes` argument, e.g:  
+`python main.py --num-classes 2`   
 
-*Run script*
+Adding the `--shap` argument will run the feature importance analysis using shap values at the end of the script and save the results in the `results/` folder. Note that this is nearly as computationally  expensive as the MLP training.
 
-*Parameters*
-`--grid-search`: This argument will run the script in validation mode, i.e., it will grid-search over MLP hyper-parameters, doing 3-fold cross validation and output the best hyper-parameters. If the parameter is omitted, the MLP is trained with optimal parameters and reproduces the results from the paper.
+Other arguments are described inside the script.
 
-*Outputs*

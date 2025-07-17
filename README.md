@@ -1,5 +1,7 @@
 # MLP-cell-stem-cell-pipeline
 
+Codebase for the machine learning experiments in the paper `Neural stem cell quiescence and activation dynamics are regulated by feedback input from their progeny under homeostatic and regenerative conditions` (Marymonchyk et al., *Cell Stem Cell*, 2025).
+
 ## Installation 
 1. Install [https://www.python.org/downloads/](Python)
 2. Clone the repository  
